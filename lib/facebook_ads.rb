@@ -37,8 +37,6 @@ module FacebookAds
   end
 
   def self.access_token
-    # @access_token = 'EAAHeXJkjBigBAJCDR7Q9uji9YBs7dEIK697ALCNtX5UJjshZA1IbLDTZAL7xbNloqub4yG4n9IvaLG3aQgeqlHQFswMXvZAmTEQlZAW6pSPynvQrSt8VoM2YajHGkY7ritlSRGe2cUGnihABQZABuw7u8y0RRWuwBEsrHhMs4nwZDZD'
-    @access_token = 'EAAHeXJkjBigBAKBaZB2ABWYhtPhEZCEuw3QANpuYvWWiKcaFENG5DFzhLsgpPmTyZCBTZBz1qUIkZCe3JrYuBOEsuZClQdO63vTxmhNxlGGRywmnRv0QIi1bq4lzwzESUToZAAoS39MTlJ1kF3I2yO8bq2YPpfDZBs9F5P8Op2LIAAZDZD'
     @access_token
   end
 
