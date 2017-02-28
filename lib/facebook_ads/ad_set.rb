@@ -32,8 +32,8 @@ module FacebookAds
     ).freeze
 
     STATUSES           = %w(ACTIVE PAUSED DELETED PENDING_REVIEW DISAPPROVED PREAPPROVED PENDING_BILLING_INFO CAMPAIGN_PAUSED ARCHIVED ADSET_PAUSED).freeze
-    BILLING_EVENTS     = %w(APP_INSTALLS IMPRESSIONS).freeze
-    OPTIMIZATION_GOALS = %w(APP_INSTALLS OFFSITE_CONVERSIONS).freeze
+    BILLING_EVENTS     = %w(APP_INSTALLS IMPRESSIONS LINK_CLICKS OFFER_CLAIMS PAGE_LIKES POST_ENGAGEMENT).freeze
+    OPTIMIZATION_GOALS = %w(APP_INSTALLS BRAND_AWARENESS ENGAGED_USERS EVENT_RESPONSES IMPRESSIONS LEAD_GENERATION LINK_CLICKS OFFER_CLAIMS OFFSITE_CONVERSIONS PAGE_ENGAGEMENT PAGE_LIKES POST_ENGAGEMENT REACH SOCIAL_IMPRESSIONS VIDEO_VIEWS).freeze
 
     # belongs_to ad_account
 
@@ -53,8 +53,8 @@ module FacebookAds
       Ad.paginate("/#{id}/ads", query: { effective_status: effective_status, limit: limit })
     end
 
-    def create_ad(name:, creative_id:)
-      query = { name: name, adset_id: id, creative: { creative_id: creative_id }.to_json }
+    def create_ad(name:, status:, creative_id:)
+      query = { name: name, status: status, adset_id: id, creative: { creative_id: creative_id }.to_json }
       result = Ad.post("/act_#{account_id}/ads", query: query)
       Ad.find(result['id'])
     end
