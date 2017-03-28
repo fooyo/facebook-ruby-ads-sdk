@@ -46,7 +46,7 @@ module FacebookAds
 
     # has_many ad_insights
 
-    def ad_insights(range: Date.today..Date.today, level: 'ad', time_increment: 1)
+    def ad_insights(range:, level:, time_increment:)
       query = {
         level: level,
         time_increment: time_increment,
