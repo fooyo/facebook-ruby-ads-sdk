@@ -28,5 +28,12 @@ module FacebookAds
     def ad_creative
       @ad_creative ||= AdCreative.find(creative['id'])
     end
+
+    def ad_insights(time_increment)
+      query = {
+        time_increment: time_increment
+      }
+      AdInsight.paginate("/#{id}/insights", query: query)
+    end
   end
 end
