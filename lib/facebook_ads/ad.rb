@@ -35,5 +35,9 @@ module FacebookAds
       }
       AdInsight.paginate("/#{id}/insights", query: query)
     end
+
+    def ad_previews
+      Ad.get("/#{id}/previews", query: { ad_format: 'DESKTOP_FEED_STANDARD' }, objectify: true)
+    end
   end
 end
