@@ -10,10 +10,10 @@ module FacebookAds
         object_story_spec = {
           'page_id' => page_id, # 300664329976860
           'instagram_actor_id' => instagram_actor_id, # 503391023081924
+          'body' => body,
           'link_data' => {
             'link' => link, # https://tophatter.com/, https://itunes.apple.com/app/id619460348, http://play.google.com/store/apps/details?id=com.tophatter
             'message' => message,
-            'body' => body,
             'image_hash' => image_hash,
             'call_to_action' => {
               'type' => call_to_action_type,
