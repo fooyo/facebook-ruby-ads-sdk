@@ -10,7 +10,6 @@ module FacebookAds
         object_story_spec = {
           'page_id' => page_id, # 300664329976860
           'instagram_actor_id' => instagram_actor_id, # 503391023081924
-          'body' => body,
           'link_data' => {
             'link' => link, # https://tophatter.com/, https://itunes.apple.com/app/id619460348, http://play.google.com/store/apps/details?id=com.tophatter
             'message' => message,
@@ -25,9 +24,9 @@ module FacebookAds
             }
           }
         }
-
         {
           name: name,
+          body: body,
           object_story_spec: object_story_spec.to_json
         }
       end
