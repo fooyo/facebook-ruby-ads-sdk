@@ -6,7 +6,7 @@ module FacebookAds
     CALL_TO_ACTION_TYPES = %w(OPEN_LINK LIKE_PAGE SHOP_NOW PLAY_GAME INSTALL_APP USE_APP INSTALL_MOBILE_APP USE_MOBILE_APP BOOK_TRAVEL LISTEN_MUSIC LEARN_MORE SIGN_UP DOWNLOAD WATCH_MORE NO_BUTTON CALL_NOW APPLY_NOW BUY_NOW GET_OFFER GET_OFFER_VIEW GET_DIRECTIONS MESSAGE_PAGE MESSAGE_USER SUBSCRIBE SELL_NOW DONATE_NOW GET_QUOTE CONTACT_US RECORD_NOW VOTE_NOW REGISTER_NOW REQUEST_TIME SEE_MENU OPEN_MOVIES).freeze
 
     class << self
-      def photo(name:, page_id:, instagram_actor_id: nil, message:, link:, link_title:, image_hash:, call_to_action_type:)
+      def photo(name:, page_id:, instagram_actor_id: nil, message:, link:, link_title:, body:, image_hash:, call_to_action_type:)
         object_story_spec = {
           'page_id' => page_id, # 300664329976860
           'instagram_actor_id' => instagram_actor_id, # 503391023081924
@@ -19,7 +19,8 @@ module FacebookAds
               'value' => {
                 # 'application' =>,
                 'link' => link,
-                'link_title' => link_title
+                'link_title' => link_title,
+                'body' => body
               }
             }
           }
