@@ -134,7 +134,7 @@ module FacebookAds
     end
 
     def create_image_ad_creative(creative)
-      required = %i(name page_id message link link_title body image_hash call_to_action_type)
+      required = %i(name page_id message link link_title description image_hash call_to_action_type)
 
       unless (keys = required - creative.keys).length.zero?
         raise Exception, "Creative is missing the following: #{keys.to_sentence}"
