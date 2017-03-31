@@ -115,6 +115,21 @@ module FacebookAds
       AdAudience.find(result['id'])
     end
 
+    def create_page_like_ad_audience(name:, page_id:)
+      query = {
+          name: name,
+          subtype: 'LOOKALIKE',
+          lookalike_spec: {
+            ratio: 0.1,
+            country: 'SG',
+            page_id: page_id,
+            conversion_type: 'page_like'
+          }
+      }
+      result = AdAudience.post("/#{id}/customaudiences", query: query)
+      AdAudience.find(result['id'])
+    end
+
     private
 
     def create_carousel_ad_creative(creative)
