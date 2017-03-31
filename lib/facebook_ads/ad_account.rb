@@ -115,21 +115,18 @@ module FacebookAds
       AdAudience.find(result['id'])
     end
 
-    def create_page_like_ad_audience(name:, page_id:)
-      Rails.logger.debug "enter create_page_like_ad_audience"
+    def create_page_like_ad_audience(name:, ratio:, country:, page_id:)
       query = {
           name: name,
           subtype: 'LOOKALIKE',
           lookalike_spec: {
-            ratio: 0.06,
-            country: 'SG',
+            ratio: ratio,
+            country: country,
             page_id: page_id,
             conversion_type: 'page_like'
           }.to_json
       }
-      Rails.logger.debug "before request"
       result = AdAudience.post("/#{id}/customaudiences", query: query)
-      Rails.logger.debug "result #{result}"
       AdAudience.find(result['id'])
     end
 
