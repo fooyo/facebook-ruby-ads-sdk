@@ -14,7 +14,7 @@ module FacebookAds
     NOT_INSTALLED      = 'not_installed'.freeze
     APP_INSTALL_STATES = [INSTALLED, NOT_INSTALLED].freeze
 
-    attr_accessor :genders, :age_min, :age_max, :countries, :user_os, :user_device, :app_install_state, :custom_audiences, :interests
+    attr_accessor :genders, :age_min, :age_max, :countries, :user_os, :user_device, :app_install_state, :custom_audiences, :interests, :demographics
 
     def initialize
       # self.genders = [WOMEN] # If nil, defaults to all genders.
@@ -27,7 +27,7 @@ module FacebookAds
     end
 
     def validate!
-      { gender: genders, countries: countries, user_os: user_os, user_device: user_device, custom_audiences: custom_audiences, interests: interests }.each_pair do |key, array|
+      { gender: genders, countries: countries, user_os: user_os, user_device: user_device, custom_audiences: custom_audiences, interests: interests, demographics: demographics }.each_pair do |key, array|
         if !array.nil? && !array.is_a?(Array)
           raise Exception, "#{self.class.name}: #{key} must be an array"
         end
@@ -54,7 +54,10 @@ module FacebookAds
         user_device: user_device,
         app_install_state: app_install_state,
         custom_audiences: custom_audiences,
-        flexible_spec: [{interests: interests}]
+        flexible_spec: [{ 
+          interests: interests, 
+          demographics: demographics
+        }]
       }.compact
     end
   end
