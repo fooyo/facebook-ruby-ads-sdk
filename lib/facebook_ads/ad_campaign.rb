@@ -18,7 +18,7 @@ module FacebookAds
       AdSet.paginate("/#{id}/adsets", query: { effective_status: effective_status, limit: limit })
     end
 
-    def create_ad_set(name:, promoted_object:, targeting:, daily_budget:, optimization_goal:, billing_event: 'IMPRESSIONS', status: 'ACTIVE', is_autobid: true)
+    def create_ad_set(name:, promoted_object:, targeting:, daily_budget:, lifetime_budget:, optimization_goal:, billing_event: 'IMPRESSIONS', status: 'ACTIVE', is_autobid: true)
       raise Exception, "Optimization goal must be one of: #{AdSet::OPTIMIZATION_GOALS.to_sentence}" unless AdSet::OPTIMIZATION_GOALS.include?(optimization_goal)
       raise Exception, "Billing event must be one of: #{AdSet::BILLING_EVENTS.to_sentence}" unless AdSet::BILLING_EVENTS.include?(billing_event)
 
@@ -36,6 +36,7 @@ module FacebookAds
         promoted_object: promoted_object.to_json,
         optimization_goal: optimization_goal,
         daily_budget: daily_budget,
+        lifetime_budget: lifetime_budget,
         billing_event: billing_event,
         status: status,
         is_autobid: is_autobid
