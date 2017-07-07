@@ -24,7 +24,9 @@ module FacebookAds
     def add_users(user_infos)
       user_infos.map! do |user_info|
         user_info.map! do |user_field|
-          unless user_field.blank?
+          if user_field.blank?
+            ''
+          else
             Digest::SHA256.hexdigest(user_field.strip.downcase)
           end
         end
