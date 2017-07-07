@@ -27,7 +27,7 @@ module FacebookAds
           if user_field.blank?
             ''
           else
-            Digest::SHA256.hexdigest(user_field.strip.downcase)
+            Digest::SHA256.hexdigest(user_field.gsub(/\s+/, "").downcase)
           end
         end
       end
