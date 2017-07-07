@@ -21,23 +21,23 @@ module FacebookAds
       result # No idea what this response looks like.
     end
 
-    def add_user_by_emails_phone_numbers(email_phone_number_pairs)
-      email_phone_number_pairs.map! do |email_phone_number_pair|
-        email_phone_number_pair.map! do |email_phone_number|
-          Digest::SHA256.hexdigest(email_phone_number)
+    def add_users(user_infos)
+      user_infos.map! do |user_info|
+        user_info.map! do |user_field|
+          Digest::SHA256.hexdigest(user_field.strip.downcase)
         end
       end
 
-      schema = %w(EMAIL PHONE)
+      schema = %w(EMAIL PHONE FN LN)
 
       query = {
           payload: {
               schema: schema.to_json,
-              data: email_phone_number_pairs.to_json
+              data: user_infos.to_json
           }.to_json
       }
 
-      result = AdAccount.post("/#{id}/users", query: query)
+      AdAccount.post("/#{id}/users", query: query)
       self
     end
   end
