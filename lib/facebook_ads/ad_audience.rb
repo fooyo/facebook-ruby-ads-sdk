@@ -20,5 +20,25 @@ module FacebookAds
       # result['success']
       result # No idea what this response looks like.
     end
+
+    def add_user_by_emails_phone_numbers(email_phone_number_pairs)
+      email_phone_number_pairs.map! do |email_phone_number_pair|
+        email_phone_number_pair.map! do |email_phone_number|
+          Digest::SHA256.hexdigest(email_phone_number)
+        end
+      end
+
+      schema = %w(EMAIL PHONE)
+
+      query = {
+          payload: {
+              schema: schema.to_json,
+              data: email_phone_number_pairs.to_json
+          }.to_json
+      }
+
+      result = AdAccount.post("/#{id}/users", query: query)
+      self
+    end
   end
 end

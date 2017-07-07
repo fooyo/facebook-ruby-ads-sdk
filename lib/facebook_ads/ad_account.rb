@@ -130,6 +130,16 @@ module FacebookAds
       AdAudience.find(result['id'])
     end
 
+    def create_custom_audience(name:, description:)
+      query = {
+          name: name,
+          description: description,
+          subtype: 'CUSTOM'
+      }
+      result = AdAudience.post("/#{id}/customaudiences", query: query)
+      AdAudience.find(result['id'])
+    end
+
     private
 
     def create_carousel_ad_creative(creative)
